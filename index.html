@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    
+    <!-- Load ethers.js library before your app.js -->
+     <!-- <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.0/dist/ethers.umd.min.js"></script> -->
+     <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.0/dist/ethers.umd.min.js"></script>
+
+    
+    <!-- Your custom JavaScript file -->
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+    <p>Connected Address: <span id="address"></span></p>
+    <p>Contract Balance: <span id="contract-balance"></span> ETH</p>
+
+    <h2>Play Game</h2>
+    <label for="choice">Your Choice:</label>
+    <select id="choice">
+        <option value="Rock">Rock</option>
+        <option value="Paper">Paper</option>
+        <option value="Scissors">Scissors</option>
+    </select>
+    <button onclick="playGame()">Play</button>
+
+    <h2>Result</h2>
+    <p id="result">No game played yet.</p>
+
+    <h2>History of Played Games</h2>
+    <div id="game-history">
+        <p>No games played yet.</p>
+    </div>
+
+     <!-- Button to get contract balance -->
+    <button onclick="getContractBalance()">Get Contract Balance</button>
+</body>
+</html>
