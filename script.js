@@ -1,6 +1,4 @@
-// Подключаемся к контракту
-const contractAddress = "0xdA69Bf15D40E5d3edCb3600f25bd21060C699F9E"; // Замените вашим контрактом
-// Указываем ABI (Application Binary Interface) контракта
+const contractAddress = "0xdA69Bf15D40E5d3edCb3600f25bd21060C699F9E"; 
 
 const abi = [
 	{
@@ -116,12 +114,9 @@ const abi = [
 	}
 ];
 
-// Подключаемся к web3 провайдеру (метамаск)
 const provider = new ethers.providers.Web3Provider(window.ethereum, 97);
-// const provider = new ethers.BrowserProvider(window.ethereum);
 let signer;
 let contract;
-// Запрашиваем аккаунты пользователя и подключаемся к первому аккаунту
 provider.send("eth_requestAccounts", []).then(() => {
     provider.listAccounts().then((accounts) => {
         signer = provider.getSigner(accounts[0]);
@@ -180,11 +175,10 @@ async function playGame() {
     try {
         const tx = await contract.playGame(choice, {
             value: ethers.utils.parseEther("0.0001"),
-            gasLimit: 3000000 // Adjust as needed
+            gasLimit: 3000000
         });
         await tx.wait();
 
-        // Narrow down event query to the transaction's block
         const event = await contract.queryFilter(
             "GameResult",
             tx.blockNumber,
@@ -199,7 +193,6 @@ async function playGame() {
         `;
         document.getElementById("result").innerText = resultMessage;
 
-        // Add game to history
         gameHistory.push({
             player: gameResult.player,
             choice: gameResult.playerChoice,
@@ -218,7 +211,6 @@ async function playGame() {
     }
 }
 
-// Fetch and display the contract's balance
 async function getContractBalance() {
     const balance = await contract.getContractBalance();
     const formattedBalance = ethers.utils.formatEther(balance);
@@ -227,7 +219,7 @@ async function getContractBalance() {
 
 function displayGameHistory() {
     const historyContainer = document.getElementById("game-history");
-    historyContainer.innerHTML = ""; // Clear existing history
+    historyContainer.innerHTML = ""; 
 
     if (gameHistory.length === 0) {
         historyContainer.innerHTML = "<p>No games played yet.</p>";
